@@ -1,0 +1,145 @@
+
+SWDV Capstone 691 
+
+Professor Gradecki 
+
+Maukan Mir 
+
+Database Re-Design 
+
+ 
+
+As for feedback, I was told that everything aligns with my applications requirements and that this area was checked off as acceptable. Here is the following database design I handed in. This wull be applied in my application. 
+
+For the capstone project I wanted to use MongoDb because of its ability to create flexible document schemas particularly JSON files which is how I will integrate my data. Not to mention that MongoDB performs up to 100 times faster than other relational databases and provides higher performance.  
+
+I will be creating 4 different schemas, the first schema is the user information table I am creating. This will store key information like the username, email, password and timestamp. 
+
+Const UserDataSchema  = new mongoose.Schema( 
+
+username: {type: String, required: true, unique: true}, 
+
+Email: {type: String, required: true, unique: true} 
+
+Password: { type: String, required: true }, 
+
+{timestamps:true} 
+
+); 
+
+The second schema is the products schema which will hold the product name, description, img, categories it falls into, size, color and price. As well as the timestamp. 
+
+Const ProductsSchema = new mongoose.Schema( 
+
+{ 
+
+title: { type: String, required: true, unique: true }, 
+
+desc: { type: String, required: true, }, 
+
+img: { type: String, required: true }, 
+
+categories: { type: Array }, 
+
+size: { type: String }, 
+
+color: { type: String }, 
+
+price: { type: Number, required: true }, 
+
+} 
+
+{ timestamps: true } 
+
+) 
+
+ 
+
+The third scheme will be the order information which will store the product ID, the quantity, the amount, address and the status of the order. Along with a time stamp 
+
+ 
+
+OrderInfoSchema = new mongoose.Schema( 
+
+{ 
+
+userId: { type: String, required: true }, 
+
+products: [ 
+
+{ 
+
+productId: { 
+
+type: String, 
+
+}, 
+
+quantity: { 
+
+type: Number, 
+
+default: 1, 
+
+}, 
+
+}, 
+
+] 
+
+amount: { type: Number, required: true }, 
+
+address: { type: Object, required: true }, 
+
+status: { type: String, default: "pending" }, 
+
+} 
+
+{ timestamps: true } 
+
+) 
+
+ 
+
+The fourth Schema is the cart Schema which will holy the cart information. 
+
+ 
+
+const CartInfoSchema = new mongoose.Schema( 
+
+{ 
+
+userId: { type: String, required: true }, 
+
+products: [ 
+
+{ 
+
+productId: { 
+
+type: String, 
+
+}, 
+
+quantity: { 
+
+type: Number, 
+
+default: 1, 
+
+}, 
+
+}, 
+
+], 
+
+}, 
+
+{ timestamps: true } 
+
+) 
+ 
+
+ 
+
+ 
